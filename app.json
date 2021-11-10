@@ -3,6 +3,7 @@
     "name": "PF-CKF",
     "slug": "PF-CKF",
     "version": "1.0.0",
+    "scheme": "pfckf",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
