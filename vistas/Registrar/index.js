@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, TextInput, Button, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 import Styles from '../Styles/registrar'
 import 'react-native-gesture-handler';
 import { Const } from '../../servicios/constantes';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import GlobalContext from '../../componentes/global/contexto';
 
 URL = `${Const.BASE_URL}/usuario/signup`;
 
@@ -15,14 +16,7 @@ export default ({navigation})=> {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [username, setUsername] = React.useState('');
-
-  function signUp({ volverDeRegistro }) {
-    const [nombre, setNombre] = useState('');
-    const [apellido, setApellido] = useState('');
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
-    const { dataUsuario, setAuthenticated } = useContext(GlobalContext);
+  const { dataUsuario, setAuthenticated } = useContext(GlobalContext);
 
     async function registrarUsuario() {
         let headers = new Headers();
@@ -30,7 +24,7 @@ export default ({navigation})=> {
         let reqOption = {
             method: "POST",
             headers: headers,
-            body: JSON.stringify({ nombre, apellido, email: mail, username, password })
+            body: JSON.stringify({ nombre, apellido, email: email, username, password })
         }
 
         try {
@@ -40,7 +34,7 @@ export default ({navigation})=> {
             console.log("Email y/o usuario existente");
         }
     }
-}
+
     const applyAuthentication = (user) => {
         // TODO: Falta la validacion con el Backend (Ref OpenID protocol)
         AsyncStorage.storeData('@userData', user)
@@ -108,7 +102,7 @@ export default ({navigation})=> {
                 onChangeText={(text) => setPassword(text)}
             />
 
-            <TouchableOpacity onPress={registrarUsuario} style={Styles.button}>
+            <TouchableOpacity onPress={registrarUsuario} style={Styles.touchOpa}>
                 <Text>Registrarse</Text>
             </TouchableOpacity>
 

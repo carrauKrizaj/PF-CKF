@@ -6,6 +6,7 @@ import 'react-native-gesture-handler';
 import GlobalContext from '../../componentes/global/contexto';
 import Login from '../../componentes/login'
 import GoogleAuth from '../../componentes/googleAuth';
+import AsyncStorage from "../../utils/AsyncStorage";
 
 const BACKGROUND = require('../../assets/imagenes/background.jpg')
 

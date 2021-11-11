@@ -33,6 +33,12 @@ const Styles = StyleSheet.create({
     button: {
       paddingHorizontal: 10
     },
+    touchOpa: {
+      backgroundColor: "lightblue",
+      paddingVertical: 15,
+      paddingHorizontal: 70,
+      borderRadius: 10,
+    },
     input: {
       borderWidth: 1,
       padding: 5,
