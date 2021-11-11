@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { View, Button, ImageBackground, Text, TextInput } from 'react-native';
+import { View, Button, Text, TextInput } from 'react-native';
 import GlobalContext from '../global/contexto';
 import { Const } from '../../servicios/constantes';
 import Styles from '../../vistas/Styles/login'
 
-URL = `${Const.BASE_URL}/usuario/login`;
+URL = `${Const.BASE_URL}usuario/login`;
 
 function Login({applyAuthentication}) {
     const [email, setEmail] = useState('');
@@ -20,20 +20,24 @@ function Login({applyAuthentication}) {
 
         let headers = new Headers();
         headers.append("Content-type", "application/json");
+
         let reqOption = {
             method: "POST",
             headers: headers,
-            body: JSON.stringify({email:mail, password})
+            body: JSON.stringify({email:email, password: password})
         }
+
         try{
+            console.log(email)
            const data = await fetch(URL, reqOption).then(response => response.json());
+           console.log(data)
             changeContext(data); 
             setAuthenticated(true);
             applyAuthentication(data);
         
-          
         }catch(e){
-            console.log("Error Login")
+            //console.log(data)
+            console.log("Los datos ingresados son incorrectos")
         }
     }
 
@@ -68,7 +72,7 @@ function Login({applyAuthentication}) {
             />
 
       <View style={Styles.button}>
-          <Button title='Iniciar sesión' color='#790c5a' onPress={Login} />
+          <Button title='Iniciar sesión' color='#790c5a' onPress={loginUser} />
         </View>
 
       </View>
