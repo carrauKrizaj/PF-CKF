@@ -2,19 +2,17 @@ import React, { useContext, useState } from 'react';
 import { View, Button, Text, TextInput } from 'react-native';
 import GlobalContext from '../global/contexto';
 import { Const } from '../../servicios/constantes';
-import Styles from '../../vistas/Styles/login'
+import Styles from '../../Styles/login'
+import AsyncStorage from "../../utils/AsyncStorage";
 
 URL = `${Const.BASE_URL}usuario/login`;
 
 function Login({applyAuthentication}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showForm, setFlag] = useState(false)
-    const {dataUsuario, setAuthenticated} = useContext(GlobalContext);
+//    const {dataUsuario, setAuthenticated} = useContext(GlobalContext);
+//    const [authenticated, setAuthenticated] = useState(false)
 
-/*     const volverDeRegistro = () => {
-        setFlag(false)
-    } */
     
     async function loginUser() {
 
@@ -24,22 +22,22 @@ function Login({applyAuthentication}) {
         let reqOption = {
             method: "POST",
             headers: headers,
-            body: JSON.stringify({email:email, password: password})
+            body: JSON.stringify({email: email, password})
         }
 
         try{
-            console.log(email)
-           const data = await fetch(URL, reqOption).then(response => response.json());
-           console.log(data)
-            changeContext(data); 
-            setAuthenticated(true);
+           const data = await fetch(`${Const.BASE_URL}usuario/login`, reqOption).then(res=>res.json());
+            console.log("paso1 del try: ", data)    //TEST
+            changeContext(data);
+            console.log("paso2 del try: ", data)    //TEST
+//            setAuthenticated(true);
+//            console.log("paso3 del try: ", authenticated)
             applyAuthentication(data);
-        
+            console.log("paso4 del try: ", dataUsuario)   //TEST     
         }catch(e){
-            //console.log(data)
+            console.log(e)          //TEST
             console.log("Los datos ingresados son incorrectos")
         }
-    }
 
     function changeContext(data){
         dataUsuario.token = data.token;
@@ -51,6 +49,7 @@ function Login({applyAuthentication}) {
         dataUsuario.usuario.seguidores = data.usuario.seguidores;
         dataUsuario.usuario.seguidos = data.usuario.seguidos;
         dataUsuario.usuario.titulos = data.usuario.titulos;
+        }
     }
 
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import { Button, View } from 'react-native';
-import Styles from '../../vistas/Styles/home'
+import Styles from '../../Styles/home'
 
 WebBrowser.maybeCompleteAuthSession();
 

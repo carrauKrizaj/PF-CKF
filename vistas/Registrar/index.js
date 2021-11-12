@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text, TextInput, Button } from 'react-native';
-import Styles from '../Styles/registrar'
+import Styles from '../../Styles/registrar'
 import 'react-native-gesture-handler';
 import { Const } from '../../servicios/constantes';
 import { TouchableOpacity } from 'react-native-gesture-handler';
