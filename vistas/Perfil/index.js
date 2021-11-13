@@ -4,8 +4,12 @@ import { View, Text } from 'react-native';
 import Styles from '../../Styles/perfil'
 import 'react-native-gesture-handler';
 import GlobalContext from '../../componentes/global/contexto'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack';
 import BuscarTitulo from '../../componentes/buscarTitulo'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+const Stack = createStackNavigator();
 
 export default ({navigation})=> {
 

@@ -5,7 +5,7 @@ const Styles = StyleSheet.create({
         flex: 1,
 //        alignItems: 'center',
 //        justifyContent: 'center',
-        backgroundColor: '#2c003e'
+        backgroundColor: '#141010'
     },
     menu: {
         flex: 1,
@@ -14,7 +14,7 @@ const Styles = StyleSheet.create({
         alignItems: 'start',
         justifyContent: 'space-around',
         maxHeight: 50,
-        backgroundColor: '#54447b',
+        backgroundColor: '#680747',
         outerWidth: 100
     },
     menuText: {
@@ -23,7 +23,7 @@ const Styles = StyleSheet.create({
         borderRadius: 20,
         fontSize: 12,
         fontWeight: 'bold',
-        color: 'fuchsia',
+        color: '#f70776',
         padding: 5
     },
     input: {
@@ -32,10 +32,21 @@ const Styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10
     },
+    inputBuscar: {
+        margin: 10,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 10,
+        borderColor: '#f70776',
+        borderWidth: 3,
+        color: '#ececec'
+    },
     button: {
         marginVertical: 10,
         marginHorizontal: 120,
-        backgroundColor: "fuchsia",
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
         borderRadius: 20
     },
     buttonText: {

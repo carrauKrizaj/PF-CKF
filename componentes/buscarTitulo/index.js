@@ -31,10 +31,10 @@ function BuscarTitulo() {
         <View style={Styles.container}>
             <View>
             <TextInput
-                style={Styles.input}
+                style={Styles.inputBuscar}
                 value={text}
                 placeholder={'Ingresar un titulo...'}
-                placeholderTextColor='#ececec'                
+                placeholderTextColor='#e3e3e3'               
                 onChangeText={(text) => setText(text)}
             />
 

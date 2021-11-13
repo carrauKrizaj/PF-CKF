@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
 
-const dataUsuario = useContext(GlobalContext);
+const { dataUsuario } = useContext(GlobalContext);
 const [authenticated, setAuthenticated] = useState(false)
 
 const checkUser = async () => {
