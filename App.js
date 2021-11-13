@@ -8,13 +8,14 @@ import AsyncStorage from "./utils/AsyncStorage"
 import Home from './vistas/Home'
 import Registrar from './vistas/Registrar'
 import Perfil from './vistas/Perfil'
+import Resenas from './componentes/resenas'
 
 //const [state,setState] = useState(initialState);
 const Stack = createStackNavigator();
 
 export default function App() {
 
-const { dataUsuario } = useContext(GlobalContext);
+const dataUsuario = useContext(GlobalContext);
 const [authenticated, setAuthenticated] = useState(false)
 
 const checkUser = async () => {
@@ -49,6 +50,11 @@ function changeContext(data){
         <Stack.Navigator initialRouteName={'Perfil'} screenOptions= {{ headerShown: false }} >
 
           <Stack.Screen name={'Perfil'} component={Perfil} />
+          <Stack.Screen name={'Resenas'} component={Resenas} />
+          {/* Seguidores */}
+          {/* Seguidos */}
+          {/* Editar perfil */}
+
 
         </Stack.Navigator>
       </NavigationContainer>

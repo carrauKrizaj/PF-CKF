@@ -5,7 +5,7 @@ import { Const } from '../../servicios/constantes';
 import Styles from '../../Styles/login'
 import AsyncStorage from "../../utils/AsyncStorage";
 
-URL = `${Const.BASE_URL}usuario/login`;
+//const URL = `${Const.BASE_URL}usuario/login`;
 
 function Login({applyAuthentication}) {
     const [email, setEmail] = useState('');
