@@ -37,6 +37,10 @@ const resenas = dataUsuario.usuario.titulos
                 </TouchableOpacity>
             </View>
 
+            <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
+                <Text style={Styles.buttonBackText}>Atras</Text>
+            </TouchableOpacity>
+
             <View>
                 <ScrollView data = {resenas}/>
             </View>
