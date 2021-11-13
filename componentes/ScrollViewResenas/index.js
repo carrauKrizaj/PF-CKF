@@ -17,7 +17,7 @@ const Item = ({ title, anio, foto }) => (
     </View>
 );
 
-function ScrollViewTitulos(props) {
+function ScrollViewResenas(props) {
 
     function navigateMovieProfile(pelicula) {
         RootNavigation.navigate("PerfilPelicula", pelicula);
@@ -25,7 +25,8 @@ function ScrollViewTitulos(props) {
 
     return (
         <ScrollView>
-            {
+
+            {                
                 props.data.map(function (item) {
                     if (item.foto != null) {
                         return (
@@ -47,4 +48,4 @@ function ScrollViewTitulos(props) {
     )
 }
 
-export default ScrollViewTitulos;
+export default ScrollViewResenas;
