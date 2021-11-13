@@ -56,10 +56,27 @@ const Styles = StyleSheet.create({
         color: 'black',
         alignSelf: 'center'
     },
+    buttonBack: {
+        marginTop: 10,
+        marginLeft: 320,
+        marginRight: 10,
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 20
+    },    
+    buttonBackText: {
+        padding: 5,
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center'
+    },
     scLogo:{
         flexDirection: "row",
         width: 300,
-        height: 300
+        height: 300,
+        borderRadius: 10
     },
     scTitulo: {
         flexDirection: "row",
@@ -75,6 +92,44 @@ const Styles = StyleSheet.create({
         padding: 10,
         marginVertical: 8,
         marginHorizontal: 16
+    },
+    scSeguidosContainer: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    scSeguidosItem:{
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 10,
+        marginLeft: 10
+    },
+    scSeguidosText:{
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    scSeguidosTitle:{
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: "#f70776",
+        marginLeft: 15,
+        marginBottom: 15
+    },
+    scSeguidosButtons:{
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 20,
+        marginLeft: 30
+    },
+    scSeguidosButtonsText:{
+        padding: 5,
+        fontSize: 8,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center'
     }
   });
 
