@@ -5,7 +5,7 @@ import Styles from '../../Styles/perfil'
 import 'react-native-gesture-handler';
 //import GlobalContext from '../../componentes/global/contexto'
 import BuscarTitulo from '../../componentes/buscarTitulo'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import MenuPerfil from '../../componentes/menuPerfil'
 
 export default ({navigation})=> {
 
@@ -13,28 +13,8 @@ export default ({navigation})=> {
 
     return (
         <View style={Styles.container}>
-            <View style={Styles.menu}>
-                <TouchableOpacity
-                 onPress={()=> navigation.navigate('EditPerfil')}
-                > 
-                    <Text style={Styles.menuText}>Perfil</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={()=> navigation.navigate('Resenas')}
-                > 
-                    <Text style={Styles.menuText}>Reseñas</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={()=> navigation.navigate('Seguidores')}
-                > 
-                    <Text style={Styles.menuText}>Seguidores</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={()=> navigation.navigate('Seguidos')}
-                > 
-                    <Text style={Styles.menuText}>Seguidos</Text>
-                </TouchableOpacity>
-            </View>
+            
+            <MenuPerfil navigation={navigation} style={Styles.menu}/>
 
             <BuscarTitulo />
       

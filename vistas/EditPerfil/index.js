@@ -7,6 +7,7 @@ import GlobalContext from '../../componentes/global/contexto'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Const } from '../../servicios/constantes';
 import AsyncStorage from "../../utils/AsyncStorage";
+import MenuPerfil from '../../componentes/menuPerfil'
 
 export default ({navigation})=> {
 
@@ -64,28 +65,8 @@ const applyAuthentication = (user) => {
 
     return (
         <View style={Styles.container}>
-            <View style={Styles.menu}>
-                <TouchableOpacity
-                /* NO LLEVA A NINGUN LADO - SE QUEDA EN LA MISMA VISTA */
-                > 
-                    <Text style={Styles.menuText}>Perfil</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={()=> navigation.navigate('Resenas')}
-                > 
-                    <Text style={Styles.menuText}>Reseñas</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={()=> navigation.navigate('Seguidores')}
-                > 
-                    <Text style={Styles.menuText}>Seguidores</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                onPress={()=> navigation.navigate('Seguidos')}
-                > 
-                    <Text style={Styles.menuText}>Seguidos</Text>
-                </TouchableOpacity>
-            </View>
+            
+            <MenuPerfil navigation={navigation} style={Styles.menu}/>
 
             <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
                 <Text style={Styles.buttonBackText}>Atras</Text>
