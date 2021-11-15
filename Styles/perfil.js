@@ -11,11 +11,11 @@ const Styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        alignItems: 'start',
+//        alignItems: 'start',
         justifyContent: 'space-around',
         maxHeight: 50,
         backgroundColor: '#680747',
-        outerWidth: 100
+//        outerWidth: 100
     },
     menuText: {
         margin: 14,
@@ -63,7 +63,8 @@ const Styles = StyleSheet.create({
         backgroundColor: "#f70776",
         borderColor: '#c3195d',
         borderWidth: 3,
-        borderRadius: 20
+        borderRadius: 20,
+        alignSelf: 'flex-end'
     },    
     buttonBackText: {
         padding: 5,
@@ -114,7 +115,7 @@ const Styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: "#f70776",
-        marginLeft: 15,
+        marginLeft: 50,
         marginBottom: 15
     },
     scSeguidosButtons:{
@@ -130,6 +131,31 @@ const Styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center'
+    },
+    editPerContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignContent: 'flex-start'
+    },
+    editPerItem: {
+        flex: 2,
+        marginLeft: 15,
+        alignSelf: 'flex-start'
+    },
+    editPerText: {
+        marginLeft: 20,
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#e3e3e3'
+    },
+    buttonGuardar: {
+        marginBottom: 10,
+        marginLeft: 320,
+        marginRight: 10,
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 20
     }
   });
 

@@ -5,11 +5,14 @@ import 'react-native-gesture-handler';
 import GlobalContext from './componentes/global/contexto';
 import AsyncStorage from "./utils/AsyncStorage"
 
+//VISTAS
 import Home from './vistas/Home'
 import Registrar from './vistas/Registrar'
 import Perfil from './vistas/Perfil'
-import Resenas from './componentes/resenas'
-import Seguidos from './componentes/seguidos'
+import Resenas from './vistas/resenas'
+import Seguidos from './vistas/Seguidos'
+import Seguidores from './vistas/Seguidores'
+import EditPerfil from './vistas/EditPerfil';
 
 //const [state,setState] = useState(initialState);
 const Stack = createStackNavigator();
@@ -53,9 +56,8 @@ function changeContext(data){
           <Stack.Screen name={'Perfil'} component={Perfil} />
           <Stack.Screen name={'Resenas'} component={Resenas} />
           <Stack.Screen name={'Seguidos'} component={Seguidos} />
-          {/* Seguidores */}
-          {/* Editar perfil */}
-
+          <Stack.Screen name={'Seguidores'} component={Seguidores} />
+          <Stack.Screen name={'EditPerfil'} component={EditPerfil} />    
 
         </Stack.Navigator>
       </NavigationContainer>
