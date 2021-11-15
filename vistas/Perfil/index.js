@@ -16,7 +16,7 @@ export default ({navigation})=> {
             
             <MenuPerfil navigation={navigation} style={Styles.menu}/>
 
-            <BuscarTitulo />
+            <BuscarTitulo navigation={navigation}/>
       
             <StatusBar style="auto" />
         </View>
