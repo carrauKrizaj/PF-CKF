@@ -1,18 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Button, Text, TextInput } from 'react-native';
-import GlobalContext from '../global/contexto';
 import { Const } from '../../servicios/constantes';
 import Styles from '../../Styles/login'
-import AsyncStorage from "../../utils/AsyncStorage";
-
-//const URL = `${Const.BASE_URL}usuario/login`;
+import GlobalContext from '../global/contexto' 
 
 function Login({applyAuthentication}) {
+
+    //funcionaba sin el contexto antes??
+    const { dataUsuario } = useContext(GlobalContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-//    const {dataUsuario, setAuthenticated} = useContext(GlobalContext);
-//    const [authenticated, setAuthenticated] = useState(false)
-
+    //const [authenticated, setAuthenticated] = useState(false)
     
     async function loginUser() {
 
@@ -27,16 +25,11 @@ function Login({applyAuthentication}) {
 
         try{
            const data = await fetch(`${Const.BASE_URL}usuario/login`, reqOption).then(res=>res.json());
-            console.log("paso1 del try: ", data)    //TEST
             changeContext(data);
-            console.log("paso2 del try: ", data)    //TEST
 //            setAuthenticated(true);
-//            console.log("paso3 del try: ", authenticated)
-            applyAuthentication(data);
-            console.log("paso4 del try: ", dataUsuario)   //TEST     
+            applyAuthentication(data);  
         }catch(e){
-            console.log(e)          //TEST
-            console.log("Los datos ingresados son incorrectos")
+            alert("Los datos ingresados son incorrectos")
         }
 
     function changeContext(data){
@@ -51,7 +44,6 @@ function Login({applyAuthentication}) {
         dataUsuario.usuario.titulos = data.usuario.titulos;
         }
     }
-
 
     return (
         <View>

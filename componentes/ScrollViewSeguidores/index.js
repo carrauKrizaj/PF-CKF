@@ -3,7 +3,7 @@ import { View, ScrollView, StyleSheet, Text, Image, TouchableOpacity } from 'rea
 import * as RootNavigation from '../../utils/RootNavigation'
 import Styles from '../../Styles/perfil'
 
-function ScrollViewSeguidos(props) {
+function ScrollViewSeguidores(props) {
 
     return (
         <ScrollView>
@@ -18,7 +18,7 @@ function ScrollViewSeguidos(props) {
                                     <Text style={Styles.scSeguidosButtonsText}>Resenas</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity /* onPress={() => funcionUnfollow} */ style={Styles.scSeguidosButtons}>
-                                    <Text style={Styles.scSeguidosButtonsText}>Unfollow</Text>
+                                    <Text style={Styles.scSeguidosButtonsText}> {/* (!siguiendo) ? 'Seguir' : 'No seguir' */} </Text>
                                 </TouchableOpacity>
                             </View>
                             /*                             <TouchableOpacity onPress={() => navigateMovieProfile(item)} key={item.id}>
@@ -31,4 +31,4 @@ function ScrollViewSeguidos(props) {
     )
 }
 
-export default ScrollViewSeguidos;
+export default ScrollViewSeguidores;
