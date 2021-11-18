@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Stylesheet, Text, TouchableOpacity, Image, View } from 'react-native';
-import Constants from 'expo-constants';
-//import Review from "../Review";
+import { Text, TouchableOpacity, Image, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Reviews from "../../componentes/reviews";
 import GlobalContext from '../../componentes/global/contexto';
-//import AddReview from "../AddReview";
+import AddReview from "../../componentes/addReview";
 import AsyncStorage from "../../utils/AsyncStorage";
 import Styles from '../../Styles/titulo'
 
@@ -12,18 +12,23 @@ const URL_ADD_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/add-p
 const URL_REMOVE_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/remove-pelicula/";
 const noImage = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";
 
-export default function MovieProfile({ route }) {
+
+export default function Titulo({ route }) {     
 
     const [tabView, setTabView] = useState("Reviews");
     const [reviews, setReviews] = useState([]);
     const { dataUsuario } = useContext(GlobalContext);
     const [addBoton, setBoton] = useState("+");
-    const [reviewUsuario, setReviewUsuario] = useState({ _id: "", texto: "", puntaje: 1 });
+    const [enLista, setEnLista] = useState(false)
+    const [reviewUsuario, setReviewUsuario] = useState({ _id: "", texto: "", puntaje: 0 });
+
+    const navigation = useNavigation()
 
     async function buscarReviewsPelicula() {
         let reqOption = {
             method: "GET",
         }
+        console.log(route.params.id)
         let urlApi = URL_REVIEWS + route.params.id;
         try {
             let data = await fetch(urlApi, reqOption).then(response => response.json());
@@ -32,6 +37,7 @@ export default function MovieProfile({ route }) {
             if (revUser != undefined) {
                 setReviewUsuario({ _id: revUser._id, texto: revUser.texto, puntaje: revUser.puntaje });
             }
+            console.log(reviewUsuario)
         } catch (e) {
             alert("Error")
         }
@@ -78,12 +84,12 @@ export default function MovieProfile({ route }) {
             if (reviews.length == 0) {
                 return <Text style={{ fontSize: 15, color: '#E2EAE9' }}>No hay reseñas!</Text>
             } else {
-                return <Review data={reviews} />
+                return <Reviews data={reviews} />
             }
 
-        } if (value === "Tu Reseña") {
+/*         } if (value === "Tu Reseña") {
             return <AddReview tituloId={route.params.id} review={reviewUsuario} />
-
+*/
         }
     }
 
@@ -92,6 +98,7 @@ export default function MovieProfile({ route }) {
 
         if (yaAgregada) {
             setBoton("-");
+            setEnLista(true)
         } else {
             setBoton("+");
         }
@@ -102,6 +109,7 @@ export default function MovieProfile({ route }) {
         alreadyInList();
     }, []);
 
+
     function changeAddButtom() {
         if (addBoton == "+") {
             addMovie();
@@ -111,7 +119,7 @@ export default function MovieProfile({ route }) {
             setBoton("+");
         }
     }
-
+/* 
     const PreviewLayout = ({
         values,
         selectedValue,
@@ -142,7 +150,7 @@ export default function MovieProfile({ route }) {
             </View>
         </View>
     );
-
+ */
     const PreviewLayoutBoton = ({
         value,
         selectedValue,
@@ -172,12 +180,12 @@ export default function MovieProfile({ route }) {
             </View>
         </View>
     )
-    return (
-        <View style={{ backgroundColor: '#4A5156', flex: 2 }}>
-            <View style={Styles.columm}>
 
-                <Text style={Styles.titulo}>{route.params.titulo} </Text>
-                <View style={Styles.row}>
+    return (
+        <View style={Styles.container}>
+
+            <View style={Styles.row}>
+                <View style={Styles.column}>
                     <View style={{ paddingLeft: "3%" , paddingTop:5}}>
                         {
                             (route.params.foto.imageUrl) ?
@@ -186,23 +194,44 @@ export default function MovieProfile({ route }) {
                                 <Image style={Styles.logo} source={{ uri: noImage }}></Image>
                         }
                     </View>
-                    <View style={{ paddingLeft: "20%", paddingTop: 10 }}>
-                        <PreviewLayoutBoton
-                            value={addBoton}
-                            selectedValue={addBoton}
-                            setSelectedValue={changeAddButtom}
-                        />
-                    </View>
+                <Text style={Styles.titulo}>{route.params.titulo} ({route.params.anio})</Text>
+                </View>
+
+                <View style={Styles.buttonsContainer}>   
+{/*                     <PreviewLayoutBoton
+                        value={addBoton}
+                        selectedValue={addBoton}
+                        setSelectedValue={changeAddButtom}
+                    /> */}
+                    <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
+                        <Text style={Styles.buttonBackText}>Atras</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => showData} style={Styles.buttonBack}>
+                        <Text style={Styles.buttonBackText}>Reviews</Text>
+                    </TouchableOpacity>
+
                 </View>
             </View>
-            <PreviewLayout
+
+            <View>
+            {
+                (enLista) ?
+                < Reviews data={reviews} />
+                :
+                < AddReview tituloId={route.params.id} review={reviewUsuario} />
+            }
+            </View>
+
+{/*              <PreviewLayout
                 values={["Reviews", "Tu Reseña"]}
                 selectedValue={tabView}
                 setSelectedValue={setTabView}
             />
             <View style={Styles.dataView, { flex: 4 }}>
                 {showData(tabView)}
-            </View>
+            </View> */}
+
         </View>
-    );
+    )
 }

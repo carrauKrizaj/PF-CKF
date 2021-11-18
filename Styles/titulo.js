@@ -1,19 +1,29 @@
 import Constants from 'expo-constants'
 import { StyleSheet } from 'react-native';
 
+
 const Styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#141010'
+    },
     titulo: {
-        paddingTop: Constants.statusBarHeight,
+        marginTop: 5,
         textAlign: 'center',
         marginLeft: 20,
-        fontSize: 20,
+        fontSize: 12,
         color: "white",
         fontWeight: "bold"
     },
     logo: {
-        width: 100,
-        height: 150,
-    },  dataView: {
+        width: 200,
+        height: 250,
+        marginTop: 10,
+        marginLeft: 10,
+        borderRadius: 10
+    },  
+    dataView: {
         justifyContent: "center",
         alignItems: 'center',
         flexGrow: 0,
@@ -24,7 +34,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: "wrap",
     },
-    columm: {
+    column: {
         flexDirection: "column",
         flexWrap: "wrap",
     },
@@ -55,24 +65,24 @@ const Styles = StyleSheet.create({
         height: 40,
         paddingHorizontal: 6,
         paddingVertical: 6,
-        borderRadius: 10,
+        borderRadius: 50,
         backgroundColor: "oldlace",
         alignSelf: "flex-start",
         marginHorizontal: "1%",
         marginBottom: 6,
         minWidth: "48%",
-        textAlign: "center",
+        textAlign: "center"
     },
     button: {
         width: 100,
         height: 100,
-        borderRadius: 100,
+        borderRadius: 50,
         alignSelf: 'flex-start',
         justifyContent: 'center',
         textAlign: "center",
     },
     selected: {
-        backgroundColor: "lightblue",
+        backgroundColor: "#f70776",
         borderWidth: 0,
     },
     selectedLabel: { // Color del texto
@@ -85,6 +95,30 @@ const Styles = StyleSheet.create({
         fontWeight: "500",
         color: "grey",
     },
+    buttonsContainer:{
+        flex: 2,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+//        paddingLeft: "5%", 
+//        paddingTop: 10
+    },
+    buttonBack: {
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 10,
+        minHeight: 20,
+        minWidth: 80,
+        marginVertical: 10
+    },    
+    buttonBackText: {
+        padding: 5,
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: 'black',
+        textAlign: 'center'
+    }
 });
 
 export default Styles;
