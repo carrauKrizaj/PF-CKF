@@ -75,9 +75,6 @@ function AddReview(props) {
         try {
             await fetch(urlApi, reqOption)
                         .then(navigation.navigate('Perfil'))
-                        //.then(setPoint(props.review.puntaje ))
-                        //.then(onChangeText('Escribí una reseña...'))
-                        //.then()); 
         } catch (e) {
             console.log("Error");
         }
@@ -99,22 +96,13 @@ function AddReview(props) {
             
             <Text style={Styles.addPuntajeTitle}>Puntuación</Text>
             <View style={Styles.addPuntajeContainer}>
-                {/* <Button
-                    style={Styles.addSelectorPuntaje}
-                    title="-"
-                    onPress={minusPoint}
-                /> */}
+
                 <TouchableOpacity onPress={() => minusPoint()} style={Styles.addSelectorPuntaje}>
                         <Text style={Styles.addTextButton}> {res} </Text>
                 </TouchableOpacity>
 
                 <Text style={Styles.addTitlePoint}>  {(props.review._id == "")?point:props.review.puntaje}  </Text>
 
-{/*                 <Button
-                    style={Styles.addSelectorPuntaje}
-                    title="+"
-                    onPress={plusPoint}
-                /> */}
                 <TouchableOpacity onPress={() => plusPoint()} style={Styles.addSelectorPuntaje}>
                         <Text style={Styles.addTextButton}> {sum} </Text>
                 </TouchableOpacity>
@@ -123,22 +111,14 @@ function AddReview(props) {
 
             {
                 (props.review._id == "") ?
-                    /* <Button
-                        style={Styles.addAgregarEditButton}
-                        title="Agregar"
-                        onPress={addReview}
-                    /> */
+
                     (
                     <TouchableOpacity onPress={() => addReview()} style={Styles.addAgregarEditButton}>
                         <Text style={Styles.addTextButton}> Agregar </Text>
                     </TouchableOpacity>
                     )
                     :
-                    /* <Button
-                        style={{ backgroundColor: "#ADD8E6" }}
-                        title="Editar"
-                        onPress={putReview}
-                    /> */
+
                     (
                         <TouchableOpacity onPress={() => removeReview()} style={Styles.addAgregarEditButton}>
                             <Text style={Styles.addTextButton}> Remover </Text>

@@ -6,11 +6,17 @@ import GlobalContext from '../../componentes/global/contexto';
 import AddReview from "../../componentes/addReview";
 import AsyncStorage from "../../utils/AsyncStorage";
 import Styles from '../../Styles/titulo'
+import { Const } from '../../servicios/constantes';
 
-const URL_REVIEWS = "https://obscure-thicket-15756.herokuapp.com/api/reviews/title-reviews/"
-const URL_ADD_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/add-pelicula/";
-const URL_REMOVE_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/remove-pelicula/";
+'https://obscure-thicket-15756.herokuapp.com/'
+
+const URL_REVIEWS = `${Const.BASE_URL}api/reviews/title-reviews/`
+const URL_ADD_MOVIE = `${Const.BASE_URL}usuario/add-pelicula/`
+const URL_REMOVE_MOVIE = `${Const.BASE_URL}usuario/remove-pelicula/`
 const noImage = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";
+
+//const URL_ADD_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/add-pelicula/";
+//const URL_REMOVE_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/remove-pelicula/";
 
 
 export default function Titulo({ route }) {     
