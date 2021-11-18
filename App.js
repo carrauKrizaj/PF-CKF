@@ -13,6 +13,7 @@ import Resenas from './vistas/resenas'
 import Seguidos from './vistas/Seguidos'
 import Seguidores from './vistas/Seguidores'
 import EditPerfil from './vistas/EditPerfil';
+import Titulo from './vistas/Titulo';
 
 //const [state,setState] = useState(initialState);
 const Stack = createStackNavigator();
@@ -57,7 +58,8 @@ function changeContext(data){
           <Stack.Screen name={'Resenas'} component={Resenas} />
           <Stack.Screen name={'Seguidos'} component={Seguidos} />
           <Stack.Screen name={'Seguidores'} component={Seguidores} />
-          <Stack.Screen name={'EditPerfil'} component={EditPerfil} />    
+          <Stack.Screen name={'EditPerfil'} component={EditPerfil} />
+          <Stack.Screen name={'Titulo'} component={Titulo} />
 
         </Stack.Navigator>
       </NavigationContainer>

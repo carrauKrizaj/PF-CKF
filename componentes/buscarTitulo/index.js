@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import ScrollView from '../ScrollViewTitulos'
 import { Const } from '../../servicios/constantes';
@@ -6,10 +6,9 @@ import Styles from '../../Styles/perfil'
 
 const URL = `${Const.BASE_URL}api/peliculas/`;
 
-function BuscarTitulo() {
+function BuscarTitulo({navigation}) {
     const [text, setText] = useState('');
     const [peliculas, setPeliculas] = useState([]);
-
 
     async function buscarApi() {
         let reqOption = {
