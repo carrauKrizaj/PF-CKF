@@ -96,18 +96,20 @@ const Styles = StyleSheet.create({
     },
     scSeguidosContainer: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignContent: 'flex-start'
     },
     scSeguidosItem:{
         flex: 2,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingVertical: 10,
-        marginLeft: 10
+        justifyContent: 'space-around',
+        alignItems: 'baseline',
+        paddingVertical: 5,
+        marginLeft: '3%'
     },
     scSeguidosText:{
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: 'bold',
         color: 'white'
     },
@@ -122,12 +124,15 @@ const Styles = StyleSheet.create({
         backgroundColor: "#f70776",
         borderColor: '#c3195d',
         borderWidth: 3,
-        borderRadius: 20,
-        marginLeft: 30
+        borderRadius: 5,
+        marginLeft: 30,
+        minHeight: 10,
+        minWidth: 10,
+        alignSelf: 'center'
     },
     scSeguidosButtonsText:{
         padding: 5,
-        fontSize: 8,
+        fontSize: 12,
         fontWeight: 'bold',
         color: 'black',
         textAlign: 'center'
