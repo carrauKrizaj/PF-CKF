@@ -4,14 +4,8 @@ const Styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      justifyContent: 'center'
-    },
-    buttonContainer: {
-      flex: 1,
-      flexDirection: 'row',
-      alignItems: 'flex-end',
       justifyContent: 'center',
-      paddingBottom: 100
+      backgroundColor: '#141010'
     },
     inputContainer: {
       flex: 1,
@@ -20,8 +14,9 @@ const Styles = StyleSheet.create({
       justifyContent: 'center'
     },
     titulo: {
+      fontSize: 12,
       fontWeight: 'bold',
-      fontSize: 20,
+      color: '#f70776',
       alignSelf: 'center',
       paddingTop: 150
     },
@@ -30,24 +25,46 @@ const Styles = StyleSheet.create({
       width: '100%',
       height: '100%'
     },
-    button: {
-      paddingHorizontal: 10
+    buttonsContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
     },
-    touchOpa: {
-      backgroundColor: "lightblue",
-      paddingVertical: 15,
-      paddingHorizontal: 70,
-      borderRadius: 10,
+    buttonCont: {
+      flex: 2,
+      justifyContent: 'center',
+      alignItems: 'center', 
+    },
+    button: {
+      backgroundColor: "#f70776",
+      borderColor: '#c3195d',
+      borderWidth: 3,
+      borderRadius: 5,
+      paddingVertical: 5,
+      paddingHorizontal: 10,
+      marginHorizontal: 10
+    },
+    buttonText: {
+      fontSize: 12,
+      fontWeight: 'bold',
+      color: '#f70776',
+      color: 'black',
+      textAlign: 'center'
     },
     input: {
-      borderWidth: 1,
+      fontSize: 12,
+      fontWeight: 'bold',
+      color: '#f8f8f8',
+      borderWidth: 3,
+      borderColor: '#c3195d',
       padding: 5,
       paddingHorizontal: 50,
       borderRadius: 10
     },
     textosInputs:{
-      fontWeight: 'normal',
-      fontSize: 15,
+      fontSize: 12,
+      fontWeight: 'bold',
+      color: '#f70776',
       padding: 10,
       margin: 10
     }

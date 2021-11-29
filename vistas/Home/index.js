@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Button, ImageBackground, Text, TextInput } from 'react-native';
 import Styles from  '../../Styles/home'
@@ -12,16 +12,32 @@ const BACKGROUND = require('../../assets/imagenes/background.jpg')
 
 export default ({navigation})=> {
 
-//TEST
-useEffect(() => {
-  console.log(dataUsuario)
-}, [])
+const [authenticated, setAuthenticated] = useState(false)
 
+const checkUser = async () => {
+  const user = await AsyncStorage.getData('@userData')
+  if (user) {
+    changeContext(user);
+    setAuthenticated(true)
+  }
+}
 
 const applyAuthentication = (user) => {
   // TODO: Falta la validacion con el Backend (Ref OpenID protocol)
   AsyncStorage.storeData('@userData', user)
   checkUser()
+}
+
+function changeContext(data){
+  dataUsuario.token = data.token;
+  dataUsuario.usuario._id = data.usuario._id;
+  dataUsuario.usuario.nombre = data.usuario.nombre;
+  dataUsuario.usuario.apellido = data.usuario.apellido;
+  dataUsuario.usuario.email = data.usuario.email;
+  dataUsuario.usuario.username = data.usuario.username;
+  dataUsuario.usuario.seguidores = data.usuario.seguidores;
+  dataUsuario.usuario.seguidos = data.usuario.seguidos;
+  dataUsuario.usuario.titulos = data.usuario.titulos;
 }
 
     return (

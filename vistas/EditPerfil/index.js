@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, Text } from 'react-native';
 import Styles from '../../Styles/perfil'
@@ -7,7 +7,9 @@ import GlobalContext from '../../componentes/global/contexto'
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { Const } from '../../servicios/constantes';
 import AsyncStorage from "../../utils/AsyncStorage";
-import MenuPerfil from '../../componentes/menuPerfil'
+import MenuPerfil from '../../componentes/menuPerfil';
+import BackButton from '../../componentes/backButton';
+import GuardarButton from '../../componentes/guardarButton';
 
 export default ({navigation})=> {
 
@@ -68,10 +70,8 @@ const applyAuthentication = (user) => {
             
             <MenuPerfil navigation={navigation} style={Styles.menu}/>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
-                <Text style={Styles.buttonBackText}>Atras</Text>
-            </TouchableOpacity>
-
+            <GuardarButton guardar={guardarCambios} />
+            
             <Text style={Styles.scSeguidosTitle}>Información de cuenta</Text>
 
             <View style={Styles.editPerContainer}>
@@ -85,10 +85,6 @@ const applyAuthentication = (user) => {
                         placeholderTextColor='#e3e3e3'               
                         onChangeText={(nombre) => setNombre(nombre)}
                     />
-
-{/*                     <TouchableOpacity onPress={() => setNombre(text)} style={Styles.button}>
-                        <Text style={Styles.buttonText}>Buscar</Text>
-                    </TouchableOpacity> */}
                 </View>
                 <View style={Styles.editPerItem}>
                     <Text style={Styles.editPerText}>Apellido:</Text>
@@ -124,9 +120,7 @@ const applyAuthentication = (user) => {
                 
             </View>
 
-            <TouchableOpacity onPress={() => guardarCambios()} style={Styles.buttonGuardar}>
-                <Text style={Styles.buttonBackText}>Guardar</Text>
-            </TouchableOpacity>
+            <BackButton />
       
             <StatusBar style="auto" />
         </View>

@@ -6,7 +6,7 @@ function Reviews(props) {
 
     const Item = ({ texto, puntuacion }) => (
         <View style={Styles.item}>
-            <Text style={Styles.titlePoint}>Puntaje: {puntuacion}</Text>
+            <Text style={Styles.titlePoint}>Calificación: {puntuacion}</Text>
             <Text style={Styles.title}>{texto}</Text>
         </View>
     );

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 import * as RootNavigation from '../../utils/RootNavigation'
 import Styles from '../../Styles/perfil'
+import { useNavigation } from '@react-navigation/native'
 
 const noImage = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";
 
@@ -19,8 +20,10 @@ const Item = ({ title, anio, foto }) => (
 
 function ScrollViewResenas(props) {
 
+    const navigation = useNavigation();
+
     function navigateMovieProfile(pelicula) {
-        RootNavigation.navigate("PerfilPelicula", pelicula);
+        navigation.navigate("Titulo", pelicula);
     }
 
     return (
@@ -38,7 +41,7 @@ function ScrollViewResenas(props) {
                     else {
                         return (
                             <TouchableOpacity onPress={() => navigateMovieProfile(item)} key={item.id}>
-                                <Item title={item.titulo} anio={item.anio} />
+                                <Item title={item.titulo} anio={item.anio} foto={noImage} />
                             </TouchableOpacity>
                         )
                     }

@@ -7,10 +7,9 @@ import GlobalContext from '../global/contexto'
 function Login({applyAuthentication}) {
 
     //funcionaba sin el contexto antes??
-    const { dataUsuario } = useContext(GlobalContext);
+    const { dataUsuario, setAuthenticated } = useContext(GlobalContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    //const [authenticated, setAuthenticated] = useState(false)
     
     async function loginUser() {
 
@@ -26,9 +25,10 @@ function Login({applyAuthentication}) {
         try{
            const data = await fetch(`${Const.BASE_URL}usuario/login`, reqOption).then(res=>res.json());
             changeContext(data);
-//            setAuthenticated(true);
-            applyAuthentication(data);  
+            setAuthenticated(true);
+            applyAuthentication(data);
         }catch(e){
+            console.log(e)
             alert("Los datos ingresados son incorrectos")
         }
 

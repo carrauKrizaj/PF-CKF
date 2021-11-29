@@ -32,8 +32,29 @@ const checkUser = async () => {
 }
 
 useEffect(() => {
+  //applyLogout
+  //clearContext()
   checkUser()
 }, [])
+
+//TEST
+/*  
+const applyLogout = () => {
+     AsyncStorage.clearAll()
+     setAuthenticated(false)
+}
+
+function clearContext(){
+  dataUsuario.token = null;
+  dataUsuario.usuario._id = null;
+  dataUsuario.usuario.nombre = null;
+  dataUsuario.usuario.apellido = null;
+  dataUsuario.usuario.email = null;
+  dataUsuario.usuario.username = null;
+  dataUsuario.usuario.seguidores = null;
+  dataUsuario.usuario.seguidos = null;
+  dataUsuario.usuario.titulos = null;  
+} */
 
 function changeContext(data){
   dataUsuario.token = data.token;
@@ -69,6 +90,7 @@ function changeContext(data){
 
           <Stack.Screen name={'Home'} component={Home} />
           <Stack.Screen name={'Registrar'} component={Registrar} />
+
         </Stack.Navigator>
       </NavigationContainer>
       }
