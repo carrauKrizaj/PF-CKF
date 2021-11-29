@@ -8,16 +8,11 @@ import AsyncStorage from "../../utils/AsyncStorage";
 import Styles from '../../Styles/titulo'
 import { Const } from '../../servicios/constantes';
 
-'https://obscure-thicket-15756.herokuapp.com/'
 
 const URL_REVIEWS = `${Const.BASE_URL}api/reviews/title-reviews/`
 const URL_ADD_MOVIE = `${Const.BASE_URL}usuario/add-pelicula/`
 const URL_REMOVE_MOVIE = `${Const.BASE_URL}usuario/remove-pelicula/`
 const noImage = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";
-
-//const URL_ADD_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/add-pelicula/";
-//const URL_REMOVE_MOVIE = "https://obscure-thicket-15756.herokuapp.com/usuario/remove-pelicula/";
-
 
 export default function Titulo({ route }) {     
 
@@ -92,10 +87,6 @@ export default function Titulo({ route }) {
             } else {
                 return <Reviews data={reviews} />
             }
-
-/*         } if (value === "Tu Reseña") {
-            return <AddReview tituloId={route.params.id} review={reviewUsuario} />
-*/
         }
     }
 
@@ -125,67 +116,6 @@ export default function Titulo({ route }) {
             setBoton("+");
         }
     }
-/* 
-    const PreviewLayout = ({
-        values,
-        selectedValue,
-        setSelectedValue,
-
-    }) => (
-        <View style={{ padding: 10 }}>
-            <View style={Styles.row}>
-                {values.map((value) => (
-                    <TouchableOpacity
-                        key={value}
-                        onPress={() => { setSelectedValue(value) }}
-                        style={[
-                            Styles.buttonList,
-                            selectedValue === value && Styles.selected,
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                Styles.buttonLabel,
-                                selectedValue === value && Styles.selectedLabel,
-                            ]}
-                        >
-                            {value}
-                        </Text>
-                    </TouchableOpacity>
-                ))}
-            </View>
-        </View>
-    );
- */
-    const PreviewLayoutBoton = ({
-        value,
-        selectedValue,
-        setSelectedValue,
-
-    }) => (
-        <View style={{ padding: 10, flex: 1 }}>
-            <View>
-                <TouchableOpacity
-                    key={value}
-                    onPress={() => { setSelectedValue() }}
-                    style={[
-                        Styles.button,
-                        selectedValue === value && Styles.selected,
-                    ]}
-                >
-                    <Text
-                        style={[
-                            { fontSize: 50 },
-                            selectedValue === value && Styles.selectedLabel,
-                        ]}
-                    >
-                        {value}
-                    </Text>
-                </TouchableOpacity>
-
-            </View>
-        </View>
-    )
 
     return (
         <View style={Styles.container}>
@@ -204,18 +134,22 @@ export default function Titulo({ route }) {
                 </View>
 
                 <View style={Styles.buttonsContainer}>   
-{/*                     <PreviewLayoutBoton
-                        value={addBoton}
-                        selectedValue={addBoton}
-                        setSelectedValue={changeAddButtom}
-                    /> */}
-                    <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
-                        <Text style={Styles.buttonBackText}>Atras</Text>
-                    </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => showData} style={Styles.buttonBack}>
-                        <Text style={Styles.buttonBackText}>Reviews</Text>
-                    </TouchableOpacity>
+                    {
+                        (enLista) ?
+                        <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
+                            <Text style={Styles.buttonBackText}>Atras</Text>
+                        </TouchableOpacity>
+                        :
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
+                                <Text style={Styles.buttonBackText}>Atras</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => showData} style={Styles.buttonBack}>
+                                <Text style={Styles.buttonBackText}>Reviews</Text>
+                            </TouchableOpacity>
+                        </View>
+                    }
 
                 </View>
             </View>
@@ -228,15 +162,6 @@ export default function Titulo({ route }) {
                 < AddReview tituloId={route.params.id} review={reviewUsuario} />
             }
             </View>
-
-{/*              <PreviewLayout
-                values={["Reviews", "Tu Reseña"]}
-                selectedValue={tabView}
-                setSelectedValue={setTabView}
-            />
-            <View style={Styles.dataView, { flex: 4 }}>
-                {showData(tabView)}
-            </View> */}
 
         </View>
     )

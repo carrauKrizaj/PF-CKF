@@ -2,22 +2,27 @@ import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
     item: {
-        alignItems: "center",
+        alignItems: 'flex-start',
         flex: 1,
         flexDirection: "column",
-        backgroundColor: '#676C6F',
+        backgroundColor: '#f54ea2',
+        borderRadius: 10,
+        borderColor: '#ca4b7c',
+        borderWidth: 3,
         padding: 10,
         marginVertical: 8,
         marginHorizontal: 16,
     },
     title: {
-        fontSize: 15,
-        color: '#E2EAE9',
+        fontSize: 12,
+        color: 'black',
+        fontWeight: 'bold'
     },
     titlePoint: {
         alignItems: 'center',
-        fontSize: 19,
-        color: '#E2EAE9',
+        fontSize: 12,
+        color: 'black',
+        fontWeight: 'bold'
     },
     addInput: {
         height: 200,
