@@ -1,14 +1,14 @@
+import Constants from 'expo-constants'
 import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
     logoutCont: {
         flex: 1,
-        justifyContent: 'center', 
+        justifyContent: 'flex-end', 
         alignItems: 'center', 
-        backgroundColor: '#4A5156',
-        position: 'fixed',
-        bottom: 10,
-        marginLeft: 10
+//        position: 'absolute',
+//        marginTop: Constants.statusBarHeight+'10%',
+        marginBottom: '5%'
     },
     button: {
         backgroundColor: "#f70776",

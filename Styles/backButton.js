@@ -1,14 +1,22 @@
+import Constants from 'expo-constants'
 import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
     backCont: {
         flex: 1,
-        justifyContent: 'center', 
+        justifyContent: 'flex-end', 
         alignItems: 'center', 
 //        backgroundColor: '#4A5156',
-        position: 'fixed',
-        bottom: 10,
-        marginLeft: 310
+//        position: 'fixed',
+//        bottom: 10,
+        marginLeft: 260,
+//        marginTop: Constants.statusBarHeight+'10%',
+        minHeight: 40,
+        minWidth: 80,
+        maxHeight: 40,
+        maxWidth: 80,
+//        marginTop: Constants.statusBarHeight+'10%',
+        marginBottom: '10%'
     },
     buttonBack: {
         backgroundColor: "#f70776",

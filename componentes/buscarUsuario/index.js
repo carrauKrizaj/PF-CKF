@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
-import ScrollView from '../ScrollViewTitulos'
+import { dataUsuario } from '../../componentes/global/contexto';
+import ScrollView from '../ScrollViewUsuarios'
 import { Const } from '../../servicios/constantes';
 import Styles from '../../Styles/perfil'
 
-const URL = `${Const.BASE_URL}api/peliculas/`;
+const URL = `${Const.BASE_URL}usuario/`;
 
-function BuscarTitulo({navigation}) {
+function BuscarUsuario({navigation}) {
     const [text, setText] = useState('');
-    const [peliculas, setPeliculas] = useState([]);
+    const [user, setUser] = useState([]);
 
     async function buscarApi() {
         let reqOption = {
             method: "GET",
         }
         let urlApi = URL + text;
-        try{
+        try {
             let data = await fetch(urlApi, reqOption).then(response => response.json());
-            console.log(data)
-            data.forEach(element => {
-                element.foto = element.foto || {};
-            });
-            setPeliculas(data)
-         }catch(e){
-             alert("Error")
-         }  
+            data = data.filter(item => item._id != dataUsuario.usuario._id);
+            setUser(data)
+        } catch (e) {
+            alert("Error")
+        }
     }
 
     return (
@@ -33,8 +31,8 @@ function BuscarTitulo({navigation}) {
                 <TextInput
                     style={Styles.inputBuscar}
                     value={text}
-                    placeholder={'Ingresar un titulo...'}
-                    placeholderTextColor='#e3e3e3'               
+                    placeholder={'Ingresar un nombre de usuario...'}
+                    placeholderTextColor='#e3e3e3'
                     onChangeText={(text) => setText(text)}
                 />
 
@@ -44,10 +42,10 @@ function BuscarTitulo({navigation}) {
             </View>
 
             <View>
-                <ScrollView data = {peliculas}/>
+                <ScrollView data = {user} />
             </View>
         </View>
     );
 }
 
-export default BuscarTitulo;
+export default BuscarUsuario;

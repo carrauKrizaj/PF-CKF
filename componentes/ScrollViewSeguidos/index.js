@@ -1,24 +1,37 @@
-import React, { useContext }  from 'react';
+import React, { useContext, useState }  from 'react';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import Styles from '../../Styles/perfil'
 import { Const } from '../../servicios/constantes';
 import GlobalContext from '../global/contexto/index'
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from "../../utils/AsyncStorage"
-import * as RootNavigation from '../../utils/RootNavigation'
 
 const URL_UNFOLLOW = `${Const.BASE_URL}usuario/unfollow/`;
+const URL_BUSCA_USER = `${Const.BASE_URL}usuario/`;
 
 function ScrollViewSeguidos(seguidos) {
 
     const { dataUsuario } = useContext(GlobalContext);
     const navigation = useNavigation()
 
-    async function unfollowUser(user){
+    async function buscarPerfilUsuario(usr) {
+        let reqOption = {
+            method: "GET",
+        }
+        let urlApi = URL_BUSCA_USER + usr.username;
+        try {
+            let data = await fetch(urlApi, reqOption).then(response => response.json());
+            navigatePerfilUsuario(data[0]) 
+        } catch (e) {
+            alert("Error")
+        }
+    }
+
+    async function unfollowUser(usr){
         let reqOption = {
             method: "PUT",
         }
-        let urlApi = URL_UNFOLLOW + dataUsuario.usuario._id + "/" + user._id;
+        let urlApi = URL_UNFOLLOW + dataUsuario.usuario._id + "/" + usr._id;
         console.log(urlApi)
 
         try{
@@ -36,12 +49,8 @@ function ScrollViewSeguidos(seguidos) {
         dataUsuario.usuario.seguidos = data.seguidos;
     }
 
-    function navigateUserTitulos(user) {
-        RootNavigation.navigate("TitulosUsuario", user);
-    }
-
-    function navigateUserResenas(user) {
-        RootNavigation.navigate("ResenasUsuario", user);
+    function navigatePerfilUsuario(usr) {
+        navigation.navigate("PerfilUsuarioBusc", usr);
     }
 
     return (
@@ -53,14 +62,11 @@ function ScrollViewSeguidos(seguidos) {
                             
                             <View key={item._id} style={Styles.scSeguidosItem}>
                                 <Text style={Styles.scSeguidosText}> {item.username} </Text>
-                                <TouchableOpacity onPress={() => navigateUserResenas(item)} style={Styles.scSeguidosButtons}>
-                                    <Text style={Styles.scSeguidosButtonsText}> reseñas </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => navigateUserTitulos(item)} style={Styles.scSeguidosButtons}>
-                                    <Text style={Styles.scSeguidosButtonsText}> titulos </Text>
+                                <TouchableOpacity onPress={() => buscarPerfilUsuario(item)} style={Styles.scSeguidosButtons}>
+                                    <Text style={Styles.scSeguidosButtonsText}> Perfil </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => unfollowUser(item)} style={Styles.scSeguidosButtons}>
-                                    <Text style={Styles.scSeguidosButtonsText}>unfollow</Text>
+                                    <Text style={Styles.scSeguidosButtonsText}> Unfollow </Text>
                                 </TouchableOpacity>
                             </View>
                         )                    

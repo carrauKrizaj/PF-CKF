@@ -12,6 +12,7 @@ const Styles = StyleSheet.create({
         padding: 10,
         marginVertical: 8,
         marginHorizontal: 16,
+        minWidth: '90%'
     },
     title: {
         fontSize: 12,
@@ -25,7 +26,7 @@ const Styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     addInput: {
-        height: 200,
+        height: 120,
         width: "90%",
         borderWidth: 2,
         color: '#fff6f6',

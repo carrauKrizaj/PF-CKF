@@ -33,7 +33,7 @@ export default ({navigation})=> {
 
         try {
             const data = await fetch(`${Const.BASE_URL}usuario/signup`, reqOption).then(res => console.log(res));
-//            console.log(data)
+            //console.log(data)
             applyAuthentication(data);
             console.log('Usuario registrado')
             navigation.navigate('Home')
