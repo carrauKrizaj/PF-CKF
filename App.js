@@ -9,7 +9,7 @@ import AsyncStorage from "./utils/AsyncStorage"
 import Home from './vistas/Home'
 import Registrar from './vistas/Registrar'
 import Perfil from './vistas/Perfil'
-import Resenas from './vistas/resenas'
+import Resenas from './vistas/Resenas'
 import Seguidos from './vistas/Seguidos'
 import Seguidores from './vistas/Seguidores'
 import EditPerfil from './vistas/EditPerfil';
@@ -73,7 +73,7 @@ function changeContext(data){
     <GlobalContext.Provider value={{ dataUsuario, setAuthenticated }}>
       {
         (authenticated) ? 
-        <NavigationContainer>
+        <NavigationContainer>          
         <Stack.Navigator initialRouteName={'Perfil'} screenOptions= {{ headerShown: false }} >
 
           <Stack.Screen name={'Perfil'} component={Perfil} />

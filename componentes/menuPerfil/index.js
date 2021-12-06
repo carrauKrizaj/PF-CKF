@@ -15,7 +15,7 @@ function MenuPerfil ({navigation}) {
                 <TouchableOpacity
                 onPress={()=> navigation.navigate('Resenas')}
                 > 
-                    <Text style={Styles.menuText}>Reseñas</Text>
+                    <Text style={Styles.menuText}>Titulos</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                 onPress={()=> navigation.navigate('Seguidores')}

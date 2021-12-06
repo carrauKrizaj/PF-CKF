@@ -69,8 +69,6 @@ const applyAuthentication = (user) => {
         <View style={Styles.container}>
             
             <MenuPerfil navigation={navigation} style={Styles.menu}/>
-
-            <GuardarButton guardar={guardarCambios} />
             
             <Text style={Styles.scSeguidosTitle}>Información de cuenta</Text>
 
@@ -120,8 +118,11 @@ const applyAuthentication = (user) => {
                 
             </View>
 
-            <BackButton />
-      
+            <View style={{flex:1, flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'flex-start'}}>            
+                <GuardarButton guardar={guardarCambios} />            
+                <BackButton />
+            </View>
+
             <StatusBar style="auto" />
         </View>
     )

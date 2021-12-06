@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect }from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import ScrollViewTitulos from '../../componentes/ScrollViewTitulos';
+import ScrollViewResenas from '../../componentes/ScrollViewResenas';
 import GlobalContext from '../../componentes/global/contexto';
 import { Const } from '../../servicios/constantes';
-import Review from '../../vistas/Resenas';
+//import Review from '../../vistas/Resenas';
 import AsyncStorage from '../../utils/AsyncStorage';
 import Styles from '../../Styles/perfilUsuarioBusc'
+import BackButton from '../../componentes/backButton';
 
 const URL_REVIEWS = `${Const.BASE_URL}api/reviews/user-reviews/`;
 const URL_FOLLOW = `${Const.BASE_URL}usuario/follow/`;
@@ -70,20 +72,20 @@ export default function PerfilUsuarioBusc({route}) {
         dataUsuario.usuario.seguidos = data.seguidos;
     }
 
+
     useEffect(() => {
         buscarReviewsUsuario();
         isFollowing();
     }, []);
 
 
-
     function changeFollowButtom() {
-        if (follow == "Seguir") {
+        if (follow == "+") {
             followUser();
-            setFollow("Dejar de seguir");
+            setFollow("-");
         } else {
             unfollowUser();
-            setFollow("Seguir");
+            setFollow("+");
         }
     }
 
@@ -91,25 +93,25 @@ export default function PerfilUsuarioBusc({route}) {
         const yaSiguiendo = dataUsuario.usuario.seguidos.find(user => user._id == route.params._id);
 
         if (yaSiguiendo) {
-            setFollow("Dejar de seguir");
+            setFollow("-");
         } else {
-            setFollow("Seguir");
+            setFollow("+");
         }
     }
 
     function showData(value) {
         if (value === "Peliculas") {
             if (route.params.titulos.length == 0) {
-                return <Text style={{ fontSize: 15, color: '#E2EAE9' }}>No hay titulos!</Text>
+                return <Text style={Styles.peliResVacias}> La lista de películas está vacía </Text>
             } else {
             return  <ScrollViewTitulos data = {route.params.titulos}/>
             }
             
-        } if (value === "Reseñas") {
+        } if (value === "Resenas") {
             if(reviews.length == 0){
-                return <Text style={{ fontSize: 15, color: '#E2EAE9' }}>Este usuario no tiene reseñas.</Text>
+                return <Text style={Styles.peliResVacias}> El usuario no hizo ninguna reseña </Text>
             } else {
-                return <Review data = {reviews}/>
+                return <ScrollViewResenas data = {reviews}/>
             }
             
         }
@@ -121,7 +123,7 @@ export default function PerfilUsuarioBusc({route}) {
         setSelectedValue,
     
     }) => (
-        <View style={{ padding: 10, flex: 1 }}>
+        <View style={{ padding: 10, flex: 1}}>
             <View>
                 <TouchableOpacity
                     key={value}
@@ -133,7 +135,7 @@ export default function PerfilUsuarioBusc({route}) {
                 >
                     <Text
                         style={[
-                            Styles.followButton,
+                            Styles.buttonLabel,
                             selectedValue === value && Styles.selectedLabel,
                         ]}
                     >
@@ -176,38 +178,41 @@ export default function PerfilUsuarioBusc({route}) {
     );
 
     return (
-        <View style={{ backgroundColor: '#4A5156', flex: 2  }}>
-            <View >
+        <View style={Styles.container}>
+            <View style={{marginBottom: 20}}>
                 <Text style={Styles.userName}>{route.params.username}</Text>
 
-                <View style={Styles.row}>
-                    <PreviewLayout
-                        value={follow}
-                        selectedValue={follow}
-                        setSelectedValue={changeFollowButtom}
-                    />
+                <View style={Styles.infoUsuario}>
 
-                    <View style={Styles.columm}>
-                        <Text style={Styles.followingCount}>{route.params.seguidos.length} </Text>
-                        <Text style={Styles.TextFollow}> Seguidos</Text>
-                        <Text style={Styles.followingCount}>{seguidores} </Text>
-                        <Text style={Styles.TextFollow}> Seguidores</Text>
+                    <View style={Styles.row}>
+                        <Text style={Styles.TextFollow}> Seguidos </Text>
+                        <Text style={Styles.followingCount}> {route.params.seguidos.length} </Text>
+                        <Text style={Styles.TextFollow}> Seguidores </Text>
+                        <Text style={Styles.followingCount}> {seguidores} </Text>
+                    </View>
 
+                    <View style={{marginBottom: 20}}>
+                        <PreviewLayout
+                            value={follow}
+                            selectedValue={follow}
+                            setSelectedValue={changeFollowButtom}
+                        />
                     </View>
                 </View>
-            </View >
+
+            </View>
             <PreviewLayoutListado
-                values={["Peliculas", "Reseñas"]}
+                values={["Peliculas", "Resenas"]}
                 selectedValue={tabView}
                 setSelectedValue={setTabView}
             />
 
-            <View style={Styles.dataView, {flex: 4}}>
+            <View style={Styles.dataView}>
                 {showData(tabView)}
             </View>
 
+            <BackButton />
             
-
         </View>
     );
 }

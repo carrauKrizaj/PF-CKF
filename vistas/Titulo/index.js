@@ -80,6 +80,16 @@ export default function Titulo({ route }) {
         dataUsuario.usuario.titulos = data.titulos;
     }
 
+/*     function showData() {
+//        if (value === "Reviews") {
+            if (reviews.length == 0) {
+                return <Text style={{ fontSize: 15, color: '#E2EAE9' }}>No hay reseñas!</Text>
+            } else {
+                return <Reviews data={reviews} />
+            }
+//        }
+    } */
+
     function showData(value) {
         if (value === "Reviews") {
             if (reviews.length == 0) {
@@ -87,6 +97,10 @@ export default function Titulo({ route }) {
             } else {
                 return <Reviews data={reviews} />
             }
+
+        } if (value === "Tu Reseña") {
+            return <AddReview tituloId={route.params.id} review={reviewUsuario} />
+
         }
     }
 
@@ -117,6 +131,68 @@ export default function Titulo({ route }) {
         }
     }
 
+    const PreviewLayout = ({
+        values,
+        selectedValue,
+        setSelectedValue,
+
+    }) => (
+        <View style={{ padding: 10 }}>
+            <View style={Styles.row}>
+                {values.map((value) => (
+                    <TouchableOpacity
+                        key={value}
+                        onPress={() => { setSelectedValue(value) }}
+                        style={[
+                            Styles.buttonList,
+                            selectedValue === value && Styles.selected,
+                        ]}
+                    >
+                        <Text
+                            style={[
+                                Styles.buttonLabel,
+                                selectedValue === value && Styles.selectedLabel,
+                            ]}
+                        >
+                            {value}
+                        </Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </View>
+    );
+
+    const PreviewLayoutBoton = ({
+        value,
+        selectedValue,
+        setSelectedValue,
+
+    }) => (
+        <View>
+            <View>
+                <TouchableOpacity
+                    key={value}
+                    onPress={() => { setSelectedValue() }}
+                    style={[
+                        Styles.buttonAdd,
+                        selectedValue === value && Styles.selectedAdd,
+                    ]}
+                >
+                    <Text
+                        style={[
+                            { fontSize: 50 },
+                            selectedValue === value && Styles.selectedLabelAdd,
+                        ]}
+                    >
+                        {value}
+                    </Text>
+                </TouchableOpacity>
+
+            </View>
+        </View>
+    );
+
+
     return (
         <View style={Styles.container}>
 
@@ -137,17 +213,30 @@ export default function Titulo({ route }) {
 
                     {
                         (enLista) ?
-                        <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
-                            <Text style={Styles.buttonBackText}>Atras</Text>
-                        </TouchableOpacity>
+                        <View>
+                            <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
+                                <Text style={Styles.buttonBackText}>Atras</Text>
+                            </TouchableOpacity>
+                            <View>
+                                <PreviewLayoutBoton
+                                    value={addBoton}
+                                    selectedValue={addBoton}
+                                    setSelectedValue={changeAddButtom}
+                                />
+                            </View>
+                        </View>
                         :
                         <View>
                             <TouchableOpacity onPress={() => navigation.navigate('Perfil')} style={Styles.buttonBack}>
                                 <Text style={Styles.buttonBackText}>Atras</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => showData} style={Styles.buttonBack}>
-                                <Text style={Styles.buttonBackText}>Reviews</Text>
-                            </TouchableOpacity>
+                            <View>
+                                <PreviewLayoutBoton
+                                    value={addBoton}
+                                    selectedValue={addBoton}
+                                    setSelectedValue={changeAddButtom}
+                                />
+                            </View>
                         </View>
                     }
 
@@ -155,12 +244,14 @@ export default function Titulo({ route }) {
             </View>
 
             <View>
-            {
-                (enLista) ?
-                < Reviews data={reviews} />
-                :
-                < AddReview tituloId={route.params.id} review={reviewUsuario} />
-            }
+                    <PreviewLayout
+                        values={["Reviews", "Tu Reseña"]}
+                        selectedValue={tabView}
+                        setSelectedValue={setTabView}
+                    />
+                    <View style={Styles.dataView}>
+                        {showData(tabView)}
+                    </View>
             </View>
 
         </View>

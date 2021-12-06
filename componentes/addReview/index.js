@@ -3,8 +3,10 @@ import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import GlobalContext from "../../componentes/global/contexto";
 import Styles from '../../Styles/review'
 import { useNavigation } from '@react-navigation/native';
+import { Const } from '../../servicios/constantes';
 
 const URL = "https://obscure-thicket-15756.herokuapp.com/api/reviews";
+const URL_ADD_MOVIE = `${Const.BASE_URL}usuario/add-pelicula/`
 
 const sum = '>'
 const res = '<'
@@ -46,9 +48,33 @@ function AddReview(props) {
         }
         try {
             await fetch(URL, reqOption).then(res => res.json());
+            //addMovie(props)
         } catch (e) {
             alert("Error")
         }
+    }
+
+    /* AGREGAR UNA PELICULA CADA VEZ QUE AGREGO UNA RESEÑA */
+    async function addMovie(route) {
+        let headers = new Headers();
+        headers.append("Content-type", "application/json");
+        let reqOption = {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({ foto: route.params.foto, id: route.params.id, titulo: route.params.titulo, anio: route.params.anio })
+        }
+        let urlApi = URL_ADD_MOVIE + dataUsuario.usuario._id;
+        try {
+            let data = await fetch(urlApi, reqOption).then(response => response.json());
+            changeContext(data);
+            await AsyncStorage.updateTitulos('@userData', data.titulos);
+        } catch (e) {
+            alert("Error")
+        }
+    }
+
+    function changeContext(data){
+        dataUsuario.usuario.titulos = data.titulos;
     }
 
 /*     async function updateReview() {

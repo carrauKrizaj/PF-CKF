@@ -9,13 +9,25 @@ import AsyncStorage from "../../utils/AsyncStorage"
 
 const URL_FOLLOW = `${Const.BASE_URL}usuario/follow/`;
 const URL_UNFOLLOW = `${Const.BASE_URL}usuario/unfollow/`;
-
+const URL_BUSCA_USER = `${Const.BASE_URL}usuario/`;
 
 function ScrollViewSeguidores(seguidores) {
 
     const { dataUsuario } = useContext(GlobalContext);
     const navigation = useNavigation()
 
+    async function buscarPerfilUsuario(usr) {
+        let reqOption = {
+            method: "GET",
+        }
+        let urlApi = URL_BUSCA_USER + usr.username;
+        try {
+            let data = await fetch(urlApi, reqOption).then(response => response.json());
+            navigatePerfilUsuario(data[0]) 
+        } catch (e) {
+            alert("Error")
+        }
+    }
 
     function yaSeguido(seguidor) {
         const yaSeguido = dataUsuario.usuario.seguidos.find(user => user._id == seguidor._id);
@@ -71,12 +83,9 @@ function ScrollViewSeguidores(seguidores) {
         dataUsuario.usuario.seguidos = data.seguidos;
     }
 
-    function navigateUserTitulos(user) {
-        navigation.navigate("TitulosUsuario", user);
-    }
 
-    function navigateUserResenas(user) {
-        navigation.navigate("ResenasUsuario", user);
+    function navigatePerfilUsuario(usr) {
+        navigation.navigate("PerfilUsuarioBusc", usr);
     }
 
     return (
@@ -87,11 +96,8 @@ function ScrollViewSeguidores(seguidores) {
                         return (
                             <View key={item._id} style={Styles.scSeguidosItem}>
                                 <Text style={Styles.scSeguidosText}> {item.username} </Text>
-                                <TouchableOpacity onPress={() => navigateUserResenas(item)} style={Styles.scSeguidosButtons}>
-                                    <Text style={Styles.scSeguidosButtonsText}> reseñas </Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => navigateUserTitulos(item)} style={Styles.scSeguidosButtons}>
-                                    <Text style={Styles.scSeguidosButtonsText}> titulos </Text>
+                                <TouchableOpacity onPress={() => buscarPerfilUsuario(item)} style={Styles.scSeguidosButtons}>
+                                    <Text style={Styles.scSeguidosButtonsText}> Perfil </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => followUnfollow(item)} style={Styles.scSeguidosButtons}>
                                     <Text style={Styles.scSeguidosButtonsText}> {yaSeguido(item)} </Text>

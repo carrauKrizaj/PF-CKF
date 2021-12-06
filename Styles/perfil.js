@@ -1,3 +1,4 @@
+import Constants from 'expo-constants'
 import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
@@ -10,8 +11,13 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        maxHeight: 50,
+        alignItems: 'baseline',
+        minHeight: 70,
+        maxHeight: 70,
         backgroundColor: '#680747',
+        position: 'relative',
+        paddingTop: 10,
+        marginBottom: 10
     },
     menuText: {
         margin: 14,
@@ -42,7 +48,7 @@ const Styles = StyleSheet.create({
         backgroundColor: "#f70776",
         borderColor: '#c3195d',
         borderWidth: 3,
-        borderRadius: 20
+        borderRadius: 10
     },
     buttonText: {
         padding: 10,
@@ -59,7 +65,7 @@ const Styles = StyleSheet.create({
     },
     scTitulo: {
         flexDirection: "row",
-        fontSize: 13,
+        fontSize: 17,
         fontWeight: 'bold',
         color: '#E2EAE9'
     },
@@ -68,7 +74,6 @@ const Styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         padding: 10,
-        marginVertical: 8,
         marginHorizontal: 16
     },
     scSeguidosContainer: {
@@ -118,7 +123,8 @@ const Styles = StyleSheet.create({
     editPerContainer: {
         flex: 1,
         flexDirection: 'column',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        minHeight: 350
     },
     editPerItem: {
         flex: 2,
@@ -130,6 +136,42 @@ const Styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'bold',
         color: '#e3e3e3'
+    },
+    buttonList: {
+        height: 40,
+        paddingHorizontal: 6,
+        paddingVertical: 6,
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: '#fec8d8',
+        backgroundColor: "#d291bc",
+        alignSelf: "flex-start",
+        marginHorizontal: "1%",
+        marginBottom: 6,
+        minWidth: "48%",
+        textAlign: "center",
+    },
+    selected: {
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 5
+    },
+    buttonLabel: {
+        textAlign: 'center',
+        fontSize: 15,
+        fontWeight: "500",
+        color: "white",
+    },
+    selectedLabel: { // Color del texto
+        color: "black",
+        fontWeight: 'bold',
+        textAlign: "center",
+        fontSize: 15
+    },
+    row: {
+        flexDirection: 'row',
+        flexWrap: "wrap"
     }
   });
 

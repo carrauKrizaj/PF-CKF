@@ -17,6 +17,7 @@ function BuscarTitulo({navigation}) {
         let urlApi = URL + text;
         try{
             let data = await fetch(urlApi, reqOption).then(response => response.json());
+            console.log(data)
             data.forEach(element => {
                 element.foto = element.foto || {};
             });

@@ -1,17 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import Styles from '../../Styles/perfil'
 import 'react-native-gesture-handler';
 import GlobalContext from '../../componentes/global/contexto'
-import ScrollView from '../../componentes/ScrollViewResenas'
+import ScrollView from '../../componentes/ScrollViewTitulos'
 import MenuPerfil from '../../componentes/menuPerfil'
 import BackButton from '../../componentes/backButton';
 
 export default ({navigation})=> {
 
 const { dataUsuario } = useContext(GlobalContext);
-const resenas = dataUsuario.usuario.titulos
+const titulos = dataUsuario.usuario.titulos
+
+useEffect(() => {
+    console.log(dataUsuario)
+  }, [])
 
     return (
         <View style={Styles.container}>
@@ -19,7 +23,7 @@ const resenas = dataUsuario.usuario.titulos
             <MenuPerfil navigation={navigation} style={Styles.menu}/>
 
             <View>
-                <ScrollView data = {resenas}/>
+                <ScrollView data = {titulos}/>
             </View>
 
             <BackButton />

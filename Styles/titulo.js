@@ -24,11 +24,11 @@ const Styles = StyleSheet.create({
         borderRadius: 10
     },  
     dataView: {
-        justifyContent: "center",
+/*         justifyContent: "center",
         alignItems: 'center',
         flexGrow: 0,
         marginTop: '18%',
-        marginBottom: '125%'
+        marginBottom: '125%' */
     },
     row: {
         flexDirection: 'row',
@@ -65,35 +65,78 @@ const Styles = StyleSheet.create({
         height: 40,
         paddingHorizontal: 6,
         paddingVertical: 6,
-        borderRadius: 50,
-        backgroundColor: "oldlace",
+        borderRadius: 5,
+        borderWidth: 3,
+        borderColor: '#fec8d8',
+        backgroundColor: "#d291bc",
         alignSelf: "flex-start",
         marginHorizontal: "1%",
         marginBottom: 6,
         minWidth: "48%",
-        textAlign: "center"
+        textAlign: "center",
     },
     button: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: 50,
+        height: 25,
+        borderRadius: 5,
+        borderWidth: 3,
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        textAlign: "center",
+        marginHorizontal: "1%",
+        marginBottom: 6,
+        paddingHorizontal: 6,
+        paddingVertical: 6
+    },
+    buttonAdd:{
+        minHeight: 100,
+        minWidth: 100,
+        borderRadius: 10,
+        borderWidth: 3,
         alignSelf: 'flex-start',
         justifyContent: 'center',
         textAlign: "center",
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        fontSize: 50,
+        fontWeight: 'bold',
+        paddingBottom: 6
+    },
+    selectedAdd: {
+        backgroundColor: "#f70776",
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 10,
+        minHeight: 100,
+        minWidth: 100,
+        fontSize: 50,
+        fontWeight: 'bold',
+        paddingBottom: 6
+    },
+    selectedLabelAdd: { // Color del texto
+        color: "black",
+        fontWeight: 'bold',
+        textAlign: "center",
+        fontSize: 50,
+        paddingBottom: 6
     },
     selected: {
         backgroundColor: "#f70776",
-        borderWidth: 0,
+        borderColor: '#c3195d',
+        borderWidth: 3,
+        borderRadius: 5
     },
     selectedLabel: { // Color del texto
         color: "black",
+        fontWeight: 'bold',
         textAlign: "center",
+        fontSize: 15
     },
     buttonLabel: {
         textAlign: 'center',
         fontSize: 15,
         fontWeight: "500",
-        color: "grey",
+        color: "white",
     },
     buttonsContainer:{
         flex: 2,

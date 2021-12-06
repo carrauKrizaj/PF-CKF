@@ -1,50 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
-import * as RootNavigation from '../../utils/RootNavigation'
-import Styles from '../../Styles/perfil'
+import Styles from '../../Styles/review'
 import { useNavigation } from '@react-navigation/native'
+import { Const } from '../../servicios/constantes';
 
-const noImage = "https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg";
-
-const Item = ({ title, anio, foto }) => (
-    <View style={Styles.scItem}>
-        {
-            (foto) ?
-                <Image style={Styles.scLogo} source={{uri: foto}}></Image>
-                :
-                <Image style={Styles.scLogo} source={{uri: noImage}}></Image>
-        }
-        <Text style={Styles.scTitulo}>{title} ({anio})</Text>
-    </View>
-);
+const URL = `${Const.BASE_URL}api/peliculas/`;
 
 function ScrollViewResenas(props) {
 
-    const navigation = useNavigation();
+/* 
+FUNCION BUSCA TITULO
 
-    function navigateMovieProfile(pelicula) {
-        navigation.navigate("Titulo", pelicula);
+async function buscaTitulo (tituloId) {
+    const [titulo, setTitulo] = useState('No disponible')
+
+    let reqOption = {
+        method: "GET",
     }
+    let urlApi = URL + tituloId;
+    try{
+        let data = await fetch(urlApi, reqOption)
+                    .then(response => response.json());
+                    console.log(data[0].titulo)
+        setTitulo(data[0].titulo)
+     }catch(e){
+        console.log(e)
+     }  
+     return titulo
+} */
+
+    const Item = ({ titulo, texto, puntuacion }) => (
+        <View style={Styles.item}>
+            <Text style={Styles.titlePoint}> Titulo: {titulo} </Text>
+            <Text style={Styles.titlePoint}> Puntaje: {puntuacion} </Text>
+            <Text style={Styles.title}> {texto} </Text>
+        </View>
+    );
 
     return (
         <ScrollView>
-
-            {                
-                props.data.map(function (item) {
-                    if (item.foto != null) {
-                        return (
-                            <TouchableOpacity onPress={() => navigateMovieProfile(item)} key={item.id}>
-                                <Item title={item.titulo} anio={item.anio} foto={item.foto.imageUrl} />
-                            </TouchableOpacity>
-                        )
-                    }
-                    else {
-                        return (
-                            <TouchableOpacity onPress={() => navigateMovieProfile(item)} key={item.id}>
-                                <Item title={item.titulo} anio={item.anio} foto={noImage} />
-                            </TouchableOpacity>
-                        )
-                    }
+            {
+            props.data.map(function (item) {
+                    return (
+                        <Item key={item._id} titulo={item.tituloId} texto={item.texto} puntuacion={item.puntaje}/>
+                    )
                 })
             }
         </ScrollView>
